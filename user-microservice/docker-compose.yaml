@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  user-micro:
+    build: .
+    container_name: user-micro
+    environment:
+      - AMWP_URL=amqp://rabbitmq:rabbitmq@rabbitmq:5672
+      - AMWP_QUEUE=user_queue
+    restart: always
+    networks:
+      - rabbitmq_queue
+      - mongodb_database
+
+networks:
+  rabbitmq_queue:
+    external: true
+  mongodb_database:
+    external: true

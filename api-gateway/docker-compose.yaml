@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  api-gateway:
+    build: .
+    container_name: api-gateway
+    ports:
+    - ${APP_PORT}:${APP_PORT}
+    env_file:
+      - .env
+    restart: always
+    networks:
+      - rabbitmq_queue
+
+networks:
+  rabbitmq_queue:
+    external: true

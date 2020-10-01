@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.8.9-management
+    tty: true
+    environment:
+      RABBITMQ_DEFAULT_USER: rabbitmq
+      RABBITMQ_DEFAULT_PASS: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    restart: always
+    networks:
+      - queue
+
+networks:
+  queue:
+    driver: bridge
